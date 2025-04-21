@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Medicine Recommender</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Medicine Recommender</h1>
+        <form id="symptomForm">
+            <input type="text" name="symptom" placeholder="Enter your symptom..." required>
+            <button type="submit">Find Medicine</button>
+        </form>
+        <div id="results"></div>
+    </div>
+    
+    <script>
+        document.getElementById('symptomForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const response = await fetch('/recommend', {
+                method: 'POST',
+                body: formData
+            });
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = '';
+            if (!response.ok) {
+                resultDiv.innerHTML = "<p>No medicine found.</p>";
+                return;
+            }
+            const data = await response.json();
+            data.forEach(med => {
+                resultDiv.innerHTML += `
+                    <div class="medicine-card">
+                        <h3>${med.medicine}</h3>
+                        <p>Price: ${med.price}</p>
+                        <p>Store: ${med.store}</p>
+                        <a href="${med.link}" target="_blank">Buy Now</a>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>

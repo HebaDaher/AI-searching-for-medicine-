@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0.6rem 1rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.medicine-card {
+    background: #e6f7ff;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
